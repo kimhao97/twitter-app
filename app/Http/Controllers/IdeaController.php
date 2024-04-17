@@ -7,6 +7,12 @@ use App\Models\Idea;
 
 class IdeaController extends Controller
 {
+
+    public function show(Idea $idea) {
+        return view('ideas.show', [
+            'idea' => $idea
+        ]);
+    }
     public function store() {
         // dump(request()->get('idea', ''));
 
@@ -24,7 +30,7 @@ class IdeaController extends Controller
     public function destroy(Idea $idea) {
         // $idea = Idea::where('id', $id)->first()->delete();
         $idea->delete();
-        
+
         return redirect()->route('dashboard')->with('success','Idea deleted successfully');
     }
 }
