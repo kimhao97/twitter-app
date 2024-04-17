@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div>
-                <form method="post" action="{{ route('ideas.destroy', $idea->id) }}">
+                <form method="post" action="{{ route('ideas.destroy', $idea) }}">
                     @csrf
                     @method('delete')
                     <button class="btn btn-danger btn-sm"> X </button>
