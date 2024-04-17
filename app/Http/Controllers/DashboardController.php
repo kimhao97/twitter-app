@@ -16,9 +16,8 @@ class DashboardController extends Controller
 
         dump(Idea::all());
 
-        return view('dashboard',
-        [
-            'ideas' => Idea::orderBy('created_at', 'DESC')->get()
+        return view('dashboard', [
+            'ideas' => Idea::orderBy('created_at', 'DESC')->paginate(5),
         ]);
 
 
