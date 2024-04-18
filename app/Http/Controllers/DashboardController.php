@@ -13,11 +13,13 @@ class DashboardController extends Controller
         //     'likes'=>"55"
         // ]);
         // $idea->save();
-
-        dump(Idea::all());
-
+        $ideas = Idea::orderBy('created_at', 'DESC');
+        if (request()->has('search')) {
+            $ideas = $ideas->where('content', 'like', '%' . request()->get('search', '') . '%');
+            dump($ideas->count());
+        }
         return view('dashboard', [
-            'ideas' => Idea::orderBy('created_at', 'DESC')->paginate(5),
+            'ideas' => $ideas->paginate(5)
         ]);
 
 
