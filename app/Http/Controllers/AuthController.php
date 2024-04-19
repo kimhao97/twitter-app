@@ -19,7 +19,7 @@ class AuthController extends Controller
         dump('store');
         $validated = request()->validate([
             'name' => 'required|min:3|max:40',
-            'email' => 'required|email|unique:users|max:255',
+            'email' => 'required|email|unique:users,email|max:255',
             'password' => 'required|confirmed'
         ]);
 
@@ -50,5 +50,14 @@ class AuthController extends Controller
         }
 
         return redirect()->route('dashboard')->with('success','Account created successfully!');
+    }
+
+    public function logout() {
+        auth()->logout();
+
+        request()->session()->invalidate();
+        request()->session()->regenerate();
+
+        return redirect()->route('dashboard')->with('success','Logged out successfully!');
     }
 }
