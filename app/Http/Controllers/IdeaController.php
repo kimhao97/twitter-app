@@ -33,11 +33,19 @@ class IdeaController extends Controller
     }
 
     public function edit(Idea $idea) {
+        if (auth()->id() !== $idea->user_id) {
+            abort(404);
+        }
+
         $editing = true;
         return view('ideas.show', compact('idea', 'editing'));
     }
 
     public function update(Idea $idea) {
+        if (auth()->id() !== $idea->user_id) {
+            abort(404);
+        }
+
         request()->validate([
             'content' =>'required|min:3|max:240',
         ]);
