@@ -8,11 +8,13 @@
             @include('shared.success_message')
             @include('shared.submit_idea')
             <hr>
-            @foreach ($ideas as $idea)
+            @forelse ($ideas as $idea)
                 <div class="mt-3">
                     @include('shared.idea_card')
                 </div>
-            @endforeach
+            @empty
+                <h4 class="text-center mt-4"> No results found.</h4>
+            @endforelse
             <div class="mt-3">
                 {{ $ideas->links() }}
             </div>
