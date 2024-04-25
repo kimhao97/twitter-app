@@ -17,7 +17,7 @@
             @endforelse
             <div class="mt-3">
                 {{ $ideas->links() }}
-            </div>
+            </div> 
         </div>
         <div class="col-3">
             @include('shared.search_bar')

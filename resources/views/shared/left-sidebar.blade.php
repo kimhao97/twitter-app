@@ -29,7 +29,13 @@
             </li>
         </ul>
     </div>
-    <div class="card-footer text-center py-2">
-        <a class="btn btn-link btn-sm" href="#">View Profile </a>
-    </div>
+    @auth
+    <form class="form mt-5" action="{{ route('users.show', Auth::user()) }}" method="GET">
+        @csrf
+        <div class="card-footer text-center py-2">
+            {{-- <a class="btn btn-link btn-sm" href="#">View Profile </a> --}}
+            <input type="submit" name="profile" class="btn btn-link btn-sm" value="View Profile">
+        </div>
+    </form>
+    @endauth
 </div>
