@@ -13,7 +13,9 @@ class UserController extends Controller
     public function show(User $user)
     {
         $editing = false;
-        return view('users.show', compact('user', 'editing'));
+
+        $ideas = $user->ideas()->paginate(5);
+        return view('users.show', compact('user', 'editing', 'ideas'));
     }
 
     /**
@@ -22,7 +24,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $editing = true;
-        return view('users.show', compact('user', 'editing'));
+        $ideas = $user->ideas()->paginate(5);
+        return view('users.show', compact('user', 'editing', 'ideas'));
     }
 
     /**
@@ -35,6 +38,7 @@ class UserController extends Controller
         }
 
         $editing = false;
-        return view('users.show', compact('user', 'editing'));
+        $ideas = $user->ideas()->paginate(5);
+        return view('users.show', compact('user', 'editing','ideas'));
     }
 }
