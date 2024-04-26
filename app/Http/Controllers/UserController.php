@@ -25,7 +25,7 @@ class UserController extends Controller
     {
         $editing = true;
         $ideas = $user->ideas()->paginate(5);
-        return view('users.show', compact('user', 'editing', 'ideas'));
+        return view('users.edit', compact('user', 'editing', 'ideas'));
     }
 
     /**
@@ -37,9 +37,19 @@ class UserController extends Controller
             abort(404);
         }
 
-        $editing = false;
-        $ideas = $user->ideas()->paginate(5);
-        return view('users.show', compact('user', 'editing','ideas'));
+        $validate = request()->validate([
+            'name' =>'required|min:3',
+            'bio' =>'required|min:3',
+            'image' =>'image'
+        ]);
+
+        if (request()->has('image')) {
+            $imagePath = request()->file('image')->store('profile', 'public');
+            $validate['image'] = $imagePath;
+        }
+
+        $user->update($validate);
+        return redirect('profile');
     }
 
     public function profile(User $user)

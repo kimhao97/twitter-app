@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Idea;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -20,6 +21,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'bio',
+        'image',
         'email',
         'password',
     ];
@@ -53,5 +56,15 @@ class User extends Authenticatable
 
     public function comments() {
         return $this->hasMany(Comment::class);
+    }
+    public function getImageURL() {
+        if ($this->image) {
+            return url('storage/'. $this->image);
+
+            Storage::disk('public')->delete($user->image);
+        }
+        // return url('/storage/app/public/profile/q1RWuNKWs1sNBCCUyaIJcngLToO4nVYlsjf7qTu3.png');
+        /// default image
+        return "https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mario";
     }
 }
