@@ -41,4 +41,9 @@ class UserController extends Controller
         $ideas = $user->ideas()->paginate(5);
         return view('users.show', compact('user', 'editing','ideas'));
     }
+
+    public function profile(User $user)
+    {
+        return $this->show(auth()->user());
+    }
 }
