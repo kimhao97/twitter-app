@@ -13,7 +13,7 @@ class DashboardController extends Controller
         //     'likes'=>"55"
         // ]);
         // $idea->save();
-        $ideas = Idea::orderBy('created_at', 'DESC');
+        $ideas = Idea::with('comments.user')->orderBy('created_at', 'DESC');
         if (request()->has('search')) {
             $ideas = $ideas->where('content', 'like', '%' . request()->get('search', '') . '%');
             dump($ideas->count());
