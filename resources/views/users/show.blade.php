@@ -9,7 +9,7 @@
             @include('shared.user_card')
             @forelse ($ideas as $idea)
                 <div class="mt-3">
-                    @include('shared.idea_card')
+                    @include('ideas.shared.idea_card')
                 </div>
             @empty
                 <h4 class="text-center mt-4"> No results found.</h4>
