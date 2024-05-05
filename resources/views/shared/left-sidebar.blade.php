@@ -6,6 +6,10 @@
                     <span>Home</span></a>
             </li>
             <li class="nav-item">
+                <a class="{{ (Route::is('feed')) ? 'nav-link text-white bg-primary rounded' : 'nav-link text-dark' }}" href="feed">
+                    <span>Feed</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="{{ (Route::is('terms')) ? 'nav-link text-white bg-primary rounded' : 'nav-link text-dark' }}" href="terms">
                     <span>Terms</span></a>
             </li>
