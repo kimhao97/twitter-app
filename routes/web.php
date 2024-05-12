@@ -60,4 +60,4 @@ Route::get('/terms', function () {
 //     return view('welcome');
 // });
 
-Route::get('/admin', [AdminDashboardController::class, 'index'])->middleware(['auth', 'admin'])->name('admin.dashboard');
+Route::get('/admin', [AdminDashboardController::class, 'index'])->middleware(['auth'])->name('admin.dashboard');

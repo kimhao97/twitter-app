@@ -8,14 +8,17 @@
                     <h5 class="card-title mb-0"><a href="{{ route('users.show', $idea->user) }}"> {{ $idea->user->name }}</a></h5>
                 </div>
             </div>
-            <div>
-                <form method="post" action="{{ route('ideas.destroy', $idea) }}">
-                    @csrf
-                    @method('delete')
-                    <a class="mx-2" href="{{ route('ideas.edit', $idea->id) }}"> Edit </a>
-                    <a href="{{ route('ideas.show', $idea->id) }}"> View </a>
-                    <button class="btn btn-danger btn-sm"> X </button>
-                </form>
+            <div class="d-flex">
+                <a href="{{ route('ideas.show', $idea->id) }}"> View </a>
+                @can('idea.edit', $idea)
+                    <form method="post" action="{{ route('ideas.destroy', $idea) }}">
+                        @csrf
+                        @method('delete')
+                        <a class="mx-2" href="{{ route('ideas.edit', $idea->id) }}"> Edit </a>
+
+                        <button class="btn btn-danger btn-sm"> X </button>
+                    </form>
+                @endcan
             </div>
         </div>
     </div>
