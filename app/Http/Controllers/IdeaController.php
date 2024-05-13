@@ -28,7 +28,7 @@ class IdeaController extends Controller
         //     abort(404);
         // }
         // $idea = Idea::where('id', $id)->first()->delete();
-        Gate::authorize('idea.delete', $idea);
+        Gate::authorize('delete', $idea);
         $idea->delete();
 
         return redirect()->route('dashboard')->with('success','Idea deleted successfully');
@@ -38,7 +38,7 @@ class IdeaController extends Controller
         // if (auth()->id() !== $idea->user_id) {
         //     abort(404);
         // }
-        Gate::authorize('idea.edit', $idea);
+        Gate::authorize('update', $idea);
 
         $editing = true;
         return view('ideas.show', compact('idea', 'editing'));
@@ -52,7 +52,7 @@ class IdeaController extends Controller
         // request()->validate([
         //     'content' =>'required|min:3|max:240',
         // ]);
-        Gate::authorize('idea.edit', $idea);
+        Gate::authorize('update', $idea);
 
         $idea->content = request()->get('content', '');
         $idea->save();
