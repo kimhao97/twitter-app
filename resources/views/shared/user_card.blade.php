@@ -11,7 +11,9 @@
                 </div>
                 <div>
                     @auth
-                        <a class="mx-2" href="{{ route('users.edit', $user) }}"> Edit </a>
+                        @can('update', $user)
+                            <a class="mx-2" href="{{ route('users.edit', $user) }}"> Edit </a>
+                        @endcan
                     @endauth
                 </div>
             </div>
