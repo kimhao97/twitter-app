@@ -19,6 +19,7 @@ class DashboardController extends Controller
             dump($ideas->count());
         }
         return view('dashboard', [
+            'user' => auth()->user(),
             'ideas' => $ideas->paginate(5)
         ]);
 
