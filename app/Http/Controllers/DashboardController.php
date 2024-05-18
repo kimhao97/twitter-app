@@ -15,9 +15,14 @@ class DashboardController extends Controller
         // $idea->save();
         $ideas = Idea::with('user:id,name,image', 'comments.user:id,name,image')->orderBy('created_at', 'DESC');
         if (request()->has('search')) {
-            $ideas = $ideas->where('content', 'like', '%' . request()->get('search', '') . '%');
+            $ideas = $ideas->search(request('search', ''));
             dump($ideas->count());
         }
+
+        // $ideas = Idea::when(request()->has('search'), function ($query){
+        //     $query->search(request('search', ''));
+        // })->orderBy('created_at', 'DESC')->paginate(5);
+
         return view('dashboard', [
             'user' => auth()->user(),
             'ideas' => $ideas->paginate(5)
