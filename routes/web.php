@@ -10,6 +10,7 @@ use App\Http\Controllers\IdeaLikeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController as AdminUserDashboardController;
+use App\Http\Controllers\Admin\IdeaController as AdminIdeaDashboardController;
 use App\Http\Middleware\EnsureUserIsAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -64,5 +65,6 @@ Route::get('/terms', function () {
 Route::middleware(['auth', 'can:admin'])->prefix('/admin')->as('admin.')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('/users', [AdminUserDashboardController::class, 'index'])->name('users.dashboard');
+    Route::get('/ideas', [AdminIdeaDashboardController::class, 'index'])->name('ideas.dashboard');
 });
 
