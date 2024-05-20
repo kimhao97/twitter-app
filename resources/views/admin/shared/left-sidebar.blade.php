@@ -13,6 +13,10 @@
                 <a class="{{ (Route::is('admin.ideas.dashboard')) ? 'nav-link text-white bg-primary rounded' : 'nav-link text-dark' }}" href="{{ route('admin.ideas.dashboard') }}">
                     <span>Ideas</span></a>
             </li>
+            <li class="nav-item">
+                <a class="{{ (Route::is('admin.comments.dashboard')) ? 'nav-link text-white bg-primary rounded' : 'nav-link text-dark' }}" href="{{ route('admin.comments.dashboard') }}">
+                    <span>Comments</span></a>
+            </li>
         </ul>
     </div>
     @auth
