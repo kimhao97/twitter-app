@@ -13,4 +13,10 @@ class CommentController extends Controller
 
         return view('admin.comments.index', compact('comments'));
     }
+
+    public function destroy(Comment $comment) {
+        $comment->delete();
+
+        return redirect()->route('admin.comments.dashboard')->with('success','Comment deleted successfully');
+    }
 }

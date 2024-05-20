@@ -34,7 +34,13 @@
                             </td>
                             <td>{{ $comment->content }}</td>
                             <td>{{ $comment->created_at->toDateString() }}</td>
-                            <td>-</td>
+                            <td>
+                                <form method="post" action="{{ route('admin.comments.destroy', $comment) }}">
+                                    @csrf
+                                    @method('delete')
+                                    <a href="#" onclick="this.closest('form').submit(); return false;">Delete</a>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

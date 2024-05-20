@@ -68,5 +68,6 @@ Route::middleware(['auth', 'can:admin'])->prefix('/admin')->as('admin.')->group(
     Route::get('/users', [AdminUserDashboardController::class, 'index'])->name('users.dashboard');
     Route::get('/ideas', [AdminIdeaDashboardController::class, 'index'])->name('ideas.dashboard');
     Route::get('/comments', [AdminCommentDashboardController::class, 'index'])->name('comments.dashboard');
+    Route::delete('/comments/{comment}', [AdminCommentDashboardController::class, 'destroy'])->name('comments.destroy');
 });
 
