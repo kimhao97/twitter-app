@@ -61,5 +61,8 @@ Route::get('/terms', function () {
 //     return view('welcome');
 // });
 
-Route::get('/admin', [AdminDashboardController::class, 'index'])->middleware(['auth'])->name('admin.dashboard');
-Route::get('/admin/users', [AdminUserDashboardController::class, 'index'])->middleware(['auth'])->name('admin.users.dashboard');
+Route::middleware(['auth', 'can:admin'])->prefix('/admin')->as('admin.')->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/users', [AdminUserDashboardController::class, 'index'])->name('users.dashboard');
+});
+
